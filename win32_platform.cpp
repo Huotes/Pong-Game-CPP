@@ -2,6 +2,11 @@
 
 bool running = true;
 
+void* buffer_memory;
+int buffer_width;
+int buffer_height;
+BITMAPINFO buffer_bitmap_info;
+
 LRESULT CALLBACK window_callback(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam) {
 	LRESULT result = 0;
 	
@@ -14,12 +19,35 @@ LRESULT CALLBACK window_callback(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wPa
 		case WM_SIZE: {
 			RECT rect;
 			GetClientRect(hwnd, &rect);
-			int width = rect.right - rect.left;
-			int height = rect.bottom - rect.top;
+			buffer_width = rect.right - rect.left;
+			buffer_height = rect.bottom - rect.top;
 
-			int buffer_size = width * height * sizeof(unsigned int);
+			int buffer_size = buffer_width * buffer_height * sizeof(unsigned int);
 
-		}break;
+			if (buffer_memory) VirtualFree(buffer_memory, 0, MEM_RELEASE);
+			buffer_memory = VirtualAlloc(0, buffer_size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+
+			buffer_bitmap_info.bmiHeader.biSize = sizeof(buffer_bitmap_info.bmiHeader);
+			buffer_bitmap_info.bmiHeader.biWidth = buffer_width;
+			buffer_bitmap_info.bmiHeader.biHeight = buffer_height;
+			buffer_bitmap_info.bmiHeader.biPlanes = 1;
+			buffer_bitmap_info.bmiHeader.biBitCount = 32;
+			buffer_bitmap_info.bmiHeader.biCompression = BI_RGB;
+			typedef struct tagBITMAPINFOHEADER {
+				DWORD biSize;
+				LONG  biWidth;
+				LONG  biHeight;
+				WORD  biPlanes;
+				WORD  biBitCount;
+				DWORD biCompression;
+				DWORD biSizeImage;
+				LONG  biXPelsPerMeter;
+				LONG  biYPelsPerMeter;
+				DWORD biClrUsed;
+				DWORD biClrImportant;
+			} BITMAPINFOHEADER, * LPBITMAPINFOHEADER, * PBITMAPINFOHEADER;
+
+		} break;
 
 		default: {
 		result = DefWindowProc(hwnd, uMsg, wParam, lParam);
@@ -40,6 +68,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 	//Create Window
 	HWND window = CreateWindow(window_class.lpszClassName, L"Pong Game!", WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
+	HDC hdc = GetDC(window);
 
 	while (running) {
 		// Input
@@ -51,6 +80,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		// Simulate
 
 		// Render
+		StretchDIBits(hdc, 0, 0, buffer_width, buffer_height, 0, 0, buffer_width, buffer_height, buffer_memory, &buffer_bitmap_info, DIB_RGB_COLORS, SRCCOPY);
 	}
 		
 }
