@@ -1,2 +1,10 @@
 ﻿  win32_platform.cpp
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(4,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(13,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\renderer.cpp(1,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
+  (compiling source file 'win32_platform.cpp')
+  
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\renderer.cpp(11,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
+  (compiling source file 'win32_platform.cpp')
+  
   Project1.vcxproj -> C:\Users\athos\Documents\C++ Projects\PongGame\Project1\x64\Debug\PongGame.exe
