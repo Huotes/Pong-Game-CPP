@@ -27,7 +27,7 @@ draw_rect_in_pixels(int x0, int y0, int x1, int y1, u32 color) {
 global_variable float render_scale = 0.01f;
 
 internal void
-draw_rect(float x, float y, float half_size_x, float half_size_y) {
+draw_rect(float x, float y, float half_size_x, float half_size_y, u32 color) {
 	
 	x *= render_state.height * render_scale;
 	y += render_state.height * render_scale;
@@ -37,7 +37,7 @@ draw_rect(float x, float y, float half_size_x, float half_size_y) {
 	x += render_state.width / 2.f;
 	y += render_state.height / 2.f;
 	
-	//change to pie
+	//change to pixels
 	int x0 = x - half_size_x;
 	int x1 = x + half_size_x;
 	int y0 = y - half_size_y;

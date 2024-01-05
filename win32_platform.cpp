@@ -12,6 +12,7 @@ struct Render_State {
 
 global_variable Render_State render_state;
 
+#include "platform_common.cpp"
 #include "renderer.cpp"
 
 LRESULT CALLBACK window_callback(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam) {
@@ -64,12 +65,37 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	HWND window = CreateWindow(window_class.lpszClassName, L"Pong Game!", WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
 	HDC hdc = GetDC(window);
 
+	Input input = {};
+
 	while (running) {
 		// Input
 		MSG message;
+
+		for (int i = 0; i < BUTTON_COUNT; i++) {
+			input.buttons[i].changed = false;
+		}
+
 		while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
-			TranslateMessage(&message);
-			DispatchMessage(&message);
+
+			switch (message.message) {
+			case WM_KEYUP:
+			case WM_KEYDOWN: {
+				u32 vk_code = (u32)message.wParam;
+				bool is_down = ((message.lParam & (1 << 31)) == 0);
+
+				switch (vk_code) {
+					case VK_UP: {
+						input.buttons[BUTTON_UP].is_down = is_down;
+						input.buttons[BUTTON_UP].changed = true;
+					} break;
+				}
+			} break;
+			default: {
+					TranslateMessage(&message);
+					DispatchMessage(&message);
+				}
+			}
+
 		}
 
 		// Simulate
