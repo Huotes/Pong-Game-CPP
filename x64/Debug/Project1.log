@@ -1,5 +1,4 @@
-﻿  platform_common.cpp
-  win32_platform.cpp
+﻿  win32_platform.cpp
 C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(4,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
 C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(13,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
 C:\Users\athos\Documents\C++ Projects\PongGame\Project1\renderer.cpp(1,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
@@ -26,13 +25,15 @@ C:\Users\athos\Documents\C++ Projects\PongGame\Project1\renderer.cpp(43,9): warn
 C:\Users\athos\Documents\C++ Projects\PongGame\Project1\renderer.cpp(44,9): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'win32_platform.cpp')
   
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(103,23): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(103,19): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(104,26): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(104,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(104,17): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(104,13): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(105,27): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\athos\Documents\C++ Projects\PongGame\Project1\win32_platform.cpp(105,22): warning C4305: 'argument': truncation from 'double' to 'float'
-  Generating Code...
-  Project1.vcxproj -> C:\Users\athos\Documents\C++ Projects\PongGame\Project1\x64\Debug\PongGame.exe
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\game.cpp(8,1): warning C4091: 'static ': ignored on left of 'int' when no variable is declared
+  (compiling source file 'win32_platform.cpp')
+  
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\game.cpp(14,28): error C2065: 'player_pos_X': undeclared identifier
+  (compiling source file 'win32_platform.cpp')
+  
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\game.cpp(16,44): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'win32_platform.cpp')
+  
+C:\Users\athos\Documents\C++ Projects\PongGame\Project1\game.cpp(16,40): warning C4305: 'argument': truncation from 'double' to 'float'
+  (compiling source file 'win32_platform.cpp')
+  
